@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#ffffff">
+  <meta name="description" content="Local-first Plants vs. Zombies 2 save editor.">
+  <title>PvZ2: Anty’s Save Editor</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="plant-data.js" defer></script>
+<script src="editor.js" defer></script>
+
+
+<style id="minimal-save-editor-layout">
+/* Compact save-editor screen with currencies, power-ups, plant editing, and profile management. */
+body{margin:0!important;background:#fff!important;color:#000!important}
+.minimal-title{width:min(760px,calc(100% - 28px));margin:0 auto;padding:12px 2px 6px;border:0;background:transparent}
+.minimal-title h1{margin:0;font-size:17px;line-height:1.2;font-weight:700;letter-spacing:-.02em}
+.app-shell{width:min(760px,calc(100% - 28px));margin:0 auto;padding:0 0 18px}
+.app-shell>.editor-panel:first-child{margin:0 0 8px;padding:12px;border-width:1px!important;border-radius:10px!important}
+.app-shell>.editor-panel:first-child .panel-heading{display:none}
+.simple-upload-button{display:flex;width:100%;margin:0;min-height:42px;justify-content:center;border-width:1px;border-radius:9px;padding:8px 12px}
+.simple-upload-button + #save-file{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important}
+.file-info{margin:7px 0 0;padding:6px 8px;border:0!important;font-size:12px;min-height:0}
+.upload-export-actions{margin:0 0 10px!important;display:grid;grid-template-columns:1fr;gap:8px}
+.upload-export-actions button{width:100%;border-radius:9px}
+.quick-controls-grid{display:flex;flex-direction:column;gap:10px;margin:0}
+.quick-controls-grid>.quick-control-card{margin:0;padding:12px;border-width:1px!important;border-radius:10px!important}
+.quick-controls-grid>.quick-nav-card{display:none!important}
+.panel-heading{margin:0 0 10px;align-items:center;gap:8px}
+.panel-heading .step-number{display:none}
+.panel-heading h2,.compact-heading h2{font-size:15px!important;line-height:1.2;font-weight:700;margin:0}
+.simple-resource-row{gap:8px;align-items:stretch}
+.simple-resource-row .field-group{min-width:0;flex:1 1 100%}
+.simple-resource-row .field-group label{font-size:12px}
+.simple-resource-row #apply-resources,.simple-resource-row #apply-all-powerups{width:100%;min-height:40px;border-radius:9px}
+.preset-row{display:flex;flex-wrap:wrap;gap:6px;width:100%}
+.preset-row button{flex:1 1 58px;min-height:34px;padding:6px 8px;border-radius:8px;font-size:13px}
+.profile-manager{margin:0;padding:0;border:0!important;border-radius:0!important}
+.profile-manager-card .field-grid{grid-template-columns:minmax(0,1fr);gap:8px}
+.profile-manager-card .field-group label{font-size:12px}
+.profile-manager-actions{margin-top:8px;display:flex;flex-direction:column;align-items:stretch;gap:8px}
+#add-profile-button,#rename-profile-button{width:100%;border-radius:9px}
+.profile-rename-field{display:block!important}
+.plant-editor-panel{display:block!important;margin-top:10px;padding:12px;border:1px solid #ddd!important;border-radius:10px!important}
+.plant-editor-panel .panel-heading{display:flex!important}
+.plant-editor-panel .plant-filters{display:grid;grid-template-columns:minmax(0,1fr);gap:8px;margin:10px 0}
+.plant-editor-panel .plant-row{padding:10px 0;border-bottom:1px solid #ddd}
+.plant-editor-panel .plant-row-heading{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.plant-editor-panel .plant-row .field-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-top:8px}
+.plant-editor-panel input,.plant-editor-panel select{width:100%;min-width:0}
+@media(min-width:600px){.plant-editor-panel .plant-filters{grid-template-columns:2fr 1fr}.plant-editor-panel .plant-row .field-grid{grid-template-columns:repeat(4,minmax(0,1fr))}}
+#profile-select,#profile-name{border-radius:9px!important}
+/* Keep status/validation messages useful but unobtrusive; remove unrelated tools from this page. */
+.below-fold-section,#plant-compatibility-nodes,.reset-actions,.save-inspector,.backup-restore-panel,#surprise-toolbox,#save-lab{display:none!important}
+.editor-status,.validation-message{margin:8px 0;padding:7px 9px;border-width:1px;border-radius:8px;font-size:12px}
+@media(min-width:600px){.quick-controls-grid{display:grid;grid-template-columns:1fr 1fr}.profile-manager-card{grid-column:1/-1}.quick-controls-grid>.quick-nav-card{display:none!important}}
+.plant-image-tools{display:grid;gap:8px;margin:10px 0}.plant-image-tools .outline-button{display:block;text-align:center;padding:9px;border:1px solid #ccc;border-radius:8px;cursor:pointer}.plant-thumb{width:58px;height:48px;object-fit:contain;border:1px solid #ddd;border-radius:6px;background:#f7f7f7;margin-right:8px}.plant-row-heading{align-items:center}
+</style>
+</head>
+<body>
+
+  <header class="minimal-title"><h1>Anty’s Save Editor</h1></header>
+<main class="app-shell">
+<section class="editor-panel" aria-labelledby="file-title">
+      <div class="panel-heading"><span class="step-number">01</span><div><h2 id="file-title">Select your save</h2></div></div>
+      <label class="simple-upload-button" for="save-file">Import pp.dat</label>
+      <input id="save-file" type="file" accept="*/*" aria-label="Choose your PVZ2 save file" title="Choose your PVZ2 save file">
+
+      <div id="file-info" class="file-info" aria-live="polite">No file selected yet.</div>
+    </section>
+    <div class="editor-actions upload-export-actions" aria-label="Import and export save">
+      <button id="export-button" class="disabled-button" type="button" disabled>Export as pp.dat</button>
+    </div>
+    <div class="quick-controls-grid" aria-label="Quick editor controls">
+    <section class="editor-panel quick-control-card" aria-labelledby="resource-title">
+      <div class="panel-heading"><span class="step-number">02</span><div><h2 id="resource-title">All currencies</h2></div></div>
+      <div class="simple-resource-row">
+        <div class="field-group"><label for="resource-amount">Set all currencies/resources to</label><input id="resource-amount" type="number" min="0" max="2012500000" step="1" inputmode="numeric" placeholder="Enter amount"></div>
+        <button id="apply-resources" type="button" class="outline-button" disabled>Apply to all</button><div class="preset-row" aria-label="Currency presets"><button type="button" class="outline-button currency-preset" data-amount="1000">1K</button><button type="button" class="outline-button currency-preset" data-amount="100000">100K</button><button type="button" class="outline-button currency-preset" data-amount="1000000">1M</button><button type="button" class="outline-button currency-preset" data-amount="100000000">100M</button><button type="button" class="outline-button currency-preset" data-amount="1000000000">1B</button><button type="button" class="outline-button currency-preset" data-amount="2012500000">Maximum</button></div>
+      </div>
+      <div class="hidden-resource-fields" aria-hidden="true">
+        <input id="coins" type="number"><input id="gems" type="number"><input id="gauntlets" type="number"><input id="mints" type="number"><input id="fuel" type="number"><input id="perk" type="number">
+      </div>
+      <p id="resource-status" class="muted-note" role="status">Load a save first.</p>
+    </section>
+    <section class="editor-panel quick-control-card" aria-labelledby="powerup-title">
+      <div class="panel-heading"><span class="step-number">03</span><div><h2 id="powerup-title">Power-ups</h2></div></div>
+      <div class="simple-resource-row powerup-bulk-row"><div class="field-group"><label for="all-powerups-amount">Set every power-up to</label><input id="all-powerups-amount" type="number" min="0" max="2012500000" step="1" inputmode="numeric" placeholder="Enter amount"></div><button id="apply-all-powerups" type="button" class="outline-button" disabled>Apply to all power-ups</button><div class="preset-row powerup-presets" aria-label="Power-up presets"><button type="button" class="outline-button powerup-preset" data-amount="1000">1K</button><button type="button" class="outline-button powerup-preset" data-amount="100000">100K</button><button type="button" class="outline-button powerup-preset" data-amount="1000000">1M</button><button type="button" class="outline-button powerup-preset" data-amount="1000000000">1B</button><button type="button" class="outline-button powerup-preset" data-amount="2012500000">Maximum</button></div></div>
+      <div id="powerups-list" class="field-grid powerups-storage" aria-hidden="true"><p class="muted-note">Load a save to show its power-ups.</p></div>
+    </section>
+      <section class="editor-panel quick-control-card profile-manager-card" aria-label="Profile manager"><div class="panel-heading compact-heading"><h2>Profiles</h2></div><div class="profile-manager">
+        <div class="field-grid">
+          <div class="field-group"><label for="profile-select">Active profile</label><select id="profile-select" disabled><option value="0">Load a save first</option></select></div>
+          <div class="field-group"><label for="profile-name">New profile name</label><input id="profile-name" type="text" maxlength="40" placeholder="Enter profile name" autocomplete="off"></div>
+        </div>
+        <div class="profile-manager-actions">
+          <button id="add-profile-button" class="outline-button" type="button" disabled>Add profile</button>
+          <div class="field-group profile-rename-field"><label for="rename-profile-name">Rename active profile</label><input id="rename-profile-name" type="text" maxlength="40" placeholder="New name for active profile" autocomplete="off" disabled></div>
+          <button id="rename-profile-button" class="outline-button" type="button" disabled>Rename profile</button>
+        </div>
+      </div></div></section></div>
+    <section id="save-inspector" class="save-inspector below-fold-section" aria-labelledby="inspector-title" aria-live="polite">
+        <div class="inspector-heading"><h3 id="inspector-title">Save File Inspector</h3></div>
+        <dl class="inspector-facts"><div><dt>File status</dt><dd id="inspector-status">Not checked</dd></div><div><dt>File size</dt><dd id="inspector-size">—</dd></div><div><dt>Format / header</dt><dd id="inspector-format">—</dd></div><div><dt>Detected profiles</dt><dd id="inspector-count">—</dd></div><div><dt>Selected filename</dt><dd id="inspector-filename">—</dd></div><div><dt>SHA-256 fingerprint</dt><dd id="inspector-hash">Not calculated</dd></div></dl>
+        <div id="inspector-profiles" class="inspector-profiles"></div>
+        <div id="inspector-diagnostics" class="inspector-diagnostics" aria-live="polite"></div>
+        <div class="inspector-actions"><button id="inspector-report-button" class="outline-button" type="button" disabled>Download inspection report</button></div>
+
+      </section>
+      <section class="backup-restore-panel below-fold-section" aria-labelledby="backup-restore-title"><div><h3 id="backup-restore-title">Backup &amp; Restore</h3></div>
+        <div class="backup-restore-actions"><button id="create-backup-button" class="outline-button" type="button" disabled>Download original backup</button><input id="restore-backup-file" type="file" aria-label="Choose backup file to restore"></div>
+        <p id="backup-restore-status" class="muted-note" role="status" aria-live="polite">No backup selected.</p>
+      </section>
+      <p id="editor-status" class="editor-status" role="status" aria-live="polite">Ready.</p>
+      <section class="editor-panel plant-editor-panel" aria-labelledby="plant-title">
+      <div class="panel-heading"><span class="step-number">04</span><div><h2 id="plant-title">Plant editor</h2></div></div>
+      <div class="plant-preset-row preset-row" aria-label="Plant presets"><button type="button" class="outline-button plant-preset" data-preset="unlock">All plants unlocked</button><button type="button" class="outline-button plant-preset" data-preset="max-level">Max level</button><button type="button" class="outline-button plant-preset" data-preset="max-mastery">Max level + max mastery</button><button type="button" class="outline-button plant-preset" data-preset="level-one">All level 1 plants</button></div>
+      <div class="simple-resource-row">
+        <button id="apply-seed-numeric-ids" type="button" class="outline-button" disabled>Set seeds = Numeric ID</button>
+        <span id="plant-seed-id-status" class="muted-note" role="status">Load a save first.</span>
+      </div>
+      
+      <div class="plant-image-tools"><label class="outline-button" for="plant-screenshot-file">Extract plant images from screenshots</label><input id="plant-screenshot-file" type="file" accept="image/*" multiple hidden><button id="download-plant-images" type="button" class="outline-button">Export extracted images</button><p id="plant-image-status" class="muted-note" role="status">Choose screenshots, then tap a plant card and enter its displayed numeric ID. Crops are saved in this browser.</p><div id="plant-crop-workbench" hidden><p>Tap the center of a plant card to crop it. Enter the numeric ID shown at the bottom of that card.</p><img id="plant-crop-source" alt="Screenshot crop source"></div></div><div class="plant-filters">
+        <div class="field-group"><label for="plant-search">Search plants / Numeric IDs</label><input id="plant-search" type="search" placeholder="e.g. sunflower, peashooter, 35"></div>
+        <div class="field-group"><label for="plant-filter">Filter</label><select id="plant-filter"><option value="all">All</option><option value="leveled">Level &gt; 0</option><option value="seeds">Seeds &gt; 0</option><option value="mastery">Mastery &gt; 0</option><option value="numeric">Numeric ID known</option></select></div>
+      </div>
+      <p id="plant-count" class="muted-note">Load a save to show plant records.</p>
+      <div id="plant-levels-list" aria-live="polite"><p class="muted-note">Load a save to show its plant records.</p></div>
+          </section>
+    <div hidden aria-hidden="true" id="plant-compatibility-nodes">
+      <input id="plant-ids" type="text"><textarea id="costume-ids"></textarea>
+    </div>
+    <div id="validation-message" class="validation-message" aria-live="polite">Choose a save file to begin.</div>
+    <div class="editor-actions reset-actions"><button id="reset-button" class="outline-button" type="button">Reset changes</button></div>
+
+
+
+</main>
+
+<script>document.querySelectorAll(".currency-preset").forEach(b=>b.addEventListener("click",()=>{const i=document.getElementById("resource-amount");if(i)i.value=b.dataset.amount;}));</script>
+</body>
+</html>

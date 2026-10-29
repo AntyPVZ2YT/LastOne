@@ -1,0 +1,768 @@
+/* Typography refresh: Trebuchet MS replaces Arial throughout the interface. */
+html, body, button, input, select, textarea {
+  font-family: 'Trebuchet MS', 'Segoe UI', sans-serif;
+}
+/* Fresh interface: strict monochrome palette, no inherited theme styling. */
+:root{color-scheme:light;--white:#fff;--black:#000;--line:2px solid #000;--soft-line:1px solid #000;--radius:14px;--gold:#8A5A00;--gold-soft:#B8860B;--space:clamp(14px,2.5vw,26px);font-family: 'Trebuchet MS', 'Segoe UI', sans-serif;background:#fff;color:#000}
+*{box-sizing:border-box}
+/* Prevent iOS Safari from auto-zooming when form controls are tapped. */
+input, select, textarea, button{font-size:16px;}
+input[type="checkbox"], input[type="radio"]{font-size:initial;}
+html{min-height:100%;background:#fff;color:#000}
+body{margin:0;background:#fff!important;color:#000!important;font-family: 'Trebuchet MS', 'Segoe UI', sans-serif;line-height:1.5}
+button,input,select,textarea{font:inherit;color:#000}
+button,a,input,select,textarea{accent-color:#000}
+button{min-height:42px;padding:10px 14px;border:2px solid #000;border-radius:14px;background:#fff;color:#000;font-weight:700;cursor:pointer;box-shadow:none;transition:background-color .12s,color .12s}
+button:hover:not(:disabled){background:#000;color:#fff}
+button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+button:disabled{opacity:.38;cursor:not-allowed}
+a{color:#000;text-decoration:underline;text-underline-offset:3px}
+.app-header{width:min(1120px,calc(100% - 32px));margin:0 auto;padding:20px 16px;display:flex;align-items:center;gap:14px;border:2px solid #000;border-top:7px solid var(--gold);border-radius:14px;background:#fff}
+.brand-mark{width:54px;height:54px;display:grid;place-items:center;border:2px solid var(--gold);background:#fff;color:#000;font-size:13px;font-weight:900;letter-spacing:-.04em}
+.brand-copy{min-width:0}.brand-kicker{margin:0;font-size:10px;font-weight:800;letter-spacing:.16em}.brand-copy h1{margin:2px 0 0;font-size:clamp(19px,3vw,27px);line-height:1.15;letter-spacing:-.04em}
+.mode-label{margin-left:auto;border:1px solid var(--gold);padding:6px 8px;font-size:10px;font-weight:800;letter-spacing:.1em;white-space:nowrap}
+.app-shell{width:min(1120px,calc(100% - 32px));margin:0 auto}
+.intro-block{padding:clamp(24px,5vw,52px) 0 28px;max-width:780px}.eyebrow{margin:0 0 10px;font-size:11px;font-weight:800;letter-spacing:.16em}.intro-block h2{margin:0;font-size:clamp(30px,6vw,56px);line-height:1.02;letter-spacing:-.055em}.intro-block h2 span{font-weight:400}.intro-block>p:last-child{max-width:650px;margin:16px 0 0;font-size:15px}
+.editor-panel{margin:0 0 18px;padding:var(--space);background:#fff!important;color:#000!important;border:2px solid #000!important;border-radius:14px!important;box-shadow:none!important;min-width:0}
+.panel-heading{display:flex;align-items:flex-start;gap:12px;margin:0 0 20px}.step-number{display:grid;place-items:center;flex:0 0 34px;width:34px;height:34px;border:2px solid #000;background:#fff!important;color:#000!important;border-radius:14px!important;font-size:12px;font-weight:900}.panel-heading h2{margin:0;font-size:clamp(18px,2.5vw,23px);line-height:1.2;color:#000!important;letter-spacing:-.025em}.panel-heading p{margin:4px 0 0;color:#000!important;font-size:13px}
+.simple-upload-button{display:inline-flex;align-items:center;justify-content:center;min-height:44px;margin:0 0 10px;padding:10px 14px;border:2px solid #000;border-radius:14px;background:#fff!important;color:#000!important;font-weight:800;cursor:pointer}.simple-upload-button:hover{background:#000!important;color:#fff!important}
+#save-file{display:block;width:100%;max-width:100%;padding:10px;border:2px solid #000;border-radius:14px;background:#fff!important;color:#000!important}
+.simple-help,.muted-note,.field-group small{color:#000!important;font-size:12px;line-height:1.5}.muted-note{margin:12px 0 0}
+.file-info,.editor-status,.validation-message,.inspector-diagnostic,.inspector-diagnostics,.inspector-profiles,.inspector-profile-chip{padding:12px;border:1px solid #000;border-radius:14px;background:#fff!important;color:#000!important;overflow-wrap:anywhere}
+.file-info{margin:12px 0}.editor-status{margin:12px 0}
+.save-inspector,.backup-restore-panel,.profile-manager{margin-top:16px;padding:16px;border:1px solid #000;background:#fff!important;color:#000!important;border-radius:14px!important;box-shadow:none!important}.save-inspector h3,.backup-restore-panel h3{margin:0 0 12px;font-size:16px}.inspector-facts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0;margin:0;border-top:1px solid #000;border-left:1px solid #000}.inspector-facts>div{min-width:0;padding:10px;border-right:1px solid #000;border-bottom:1px solid #000}.inspector-facts dt{font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.07em}.inspector-facts dd{margin:4px 0 0;font-size:13px;overflow-wrap:anywhere}.inspector-profiles,.inspector-diagnostics{margin-top:10px}.inspector-actions,.backup-restore-actions,.profile-manager-actions{display:flex;gap:10px;align-items:end;flex-wrap:wrap;margin-top:12px}.backup-restore-actions input{flex:1 1 220px;min-width:0}.backup-restore-panel p{margin:12px 0 0;color:#000!important}
+.field-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;min-width:0}.field-group{display:flex;flex-direction:column;gap:6px;min-width:0}.field-group label,.field-grid label{font-size:12px;font-weight:800;color:#000!important}.field-group input,.field-group select,.field-group textarea,input[type=number],input[type=search],input[type=text],select,textarea{width:100%;min-width:0;max-width:100%;min-height:42px;padding:9px 10px;border:1px solid #000!important;border-radius:14px!important;background:#fff!important;color:#000!important;box-shadow:none!important}.field-group textarea,textarea{resize:vertical}.field-group input::placeholder,input::placeholder,textarea::placeholder{color:#555;opacity:1}
+.simple-resource-row{display:flex;align-items:end;gap:12px;flex-wrap:wrap}.simple-resource-row .field-group{flex:1;min-width:220px}.simple-resource-row #apply-resources{min-height:42px;background:#fff!important;color:#000!important;border:2px solid #000!important}.simple-resource-row #apply-resources:hover:not(:disabled){background:#000!important;color:#fff!important}.hidden-resource-fields{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.plant-filters{display:grid;grid-template-columns:minmax(0,2fr) minmax(180px,1fr);gap:12px;align-items:end}#plant-count{margin:12px 0}.plant-row{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin:0 0 10px;padding:12px;border:1px solid #000!important;border-radius:14px!important;background:#fff!important;color:#000!important}.plant-row label,.plant-row strong,.plant-row .plant-id{color:#000!important}.plant-row img{object-fit:contain;max-width:64px;max-height:64px}.plant-row .field-grid{flex:1}.plant-row input,.plant-row select{max-width:100%}
+.editor-panel details,details.editor-panel{background:#fff!important;color:#000!important;border:2px solid #000!important;border-radius:14px!important;box-shadow:none!important}details.editor-panel summary{font-weight:800;cursor:pointer}details.editor-panel .field-grid{margin-top:18px}
+.editor-actions{display:flex;gap:10px;flex-wrap:wrap;margin:18px 0 34px}.editor-actions button{min-height:48px;padding:12px 18px}.editor-actions #export-button{background:#000!important;color:#fff!important;border:2px solid #000!important;font-weight:900}.editor-actions #export-button:hover:not(:disabled){background:#fff!important;color:#000!important}.editor-actions #reset-button{background:#fff!important;color:#000!important;border:2px solid #000!important}.disabled-button:disabled{opacity:.38}
+code{padding:1px 4px;border:1px solid #000;background:#fff!important;color:#000!important;overflow-wrap:anywhere}.app-footer{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:16px 0 24px;border-top:2px solid #000;font-size:10px;font-weight:800;letter-spacing:.1em}
+@media(min-width:850px){.app-shell{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);column-gap:18px}.intro-block,.app-footer{grid-column:1/-1}.editor-panel{align-self:start}.editor-panel[aria-labelledby="plant-levels-title"],details.editor-panel,.validation-message,.editor-actions{grid-column:1/-1}}
+@media(max-width:600px){.app-header,.app-shell{width:calc(100% - 24px)}.app-header{padding:14px 0;gap:10px}.brand-mark{width:44px;height:44px}.mode-label{font-size:9px;padding:5px}.field-grid,.plant-filters{grid-template-columns:1fr}.inspector-facts{grid-template-columns:1fr 1fr}.simple-resource-row{display:flex;flex-direction:column;align-items:stretch}.simple-resource-row .field-group{width:100%;min-width:0}.simple-resource-row button,.editor-actions button{width:100%}.editor-actions button{flex:1 1 100%}.editor-panel{padding:14px}.profile-manager-actions>*{width:100%}.plant-row>*{max-width:100%}.app-footer{font-size:9px}}
+
+/* Rounded monochrome panels, with deep-gold header accent only. */
+.editor-panel,.save-inspector,.backup-restore-panel,.profile-manager,.file-info,.editor-status,.validation-message,.inspector-diagnostic,.inspector-diagnostics,.inspector-profiles,.inspector-profile-chip,.plant-row,.field-group input,.field-group select,.field-group textarea,input[type=number],input[type=search],input[type=text],select,textarea,button,.simple-upload-button,.step-number{border-radius:12px!important}
+#plant-levels-list{max-height:560px;overflow-y:auto;overscroll-behavior:contain;border:1px solid #000;border-radius:12px;padding:10px;background:#fff}
+#plant-levels-list .plant-row:last-child{margin-bottom:0}
+.powerup-bulk-row{margin:0 0 16px;padding:12px;border:1px solid #000;border-radius:10px}
+.powerup-bulk-row .field-group{flex:1;min-width:180px}
+.powerup-bulk-row button{flex:0 0 auto}
+@media(max-width:600px){.app-header{padding:12px;border-radius:12px}.powerup-bulk-row button{width:100%}#plant-levels-list{max-height:460px}}
+
+/* Deep-gold details; core surfaces remain white with black text and borders. */
+.panel-heading .step-number{border-color:var(--gold)!important}
+.app-header{border-bottom-color:var(--gold)}
+.profile-manager,.backup-restore-panel,.save-inspector{border-top:3px solid var(--gold)}
+.field-group input:focus,.field-group select:focus,.field-group textarea:focus,input[type=number]:focus,input[type=search]:focus,input[type=text]:focus,select:focus,textarea:focus{border-color:var(--gold)!important;outline:2px solid var(--gold);outline-offset:1px}
+.powerups-storage{display:none!important}
+#plant-levels-list{max-height:560px;overflow-y:auto;overscroll-behavior:contain;border:1px solid #000;border-radius:12px;padding:10px;background:#fff}
+@media(max-width:600px){#plant-levels-list{max-height:460px}}
+
+/* FINAL OVERRIDE: remove every gold accent from the save editor UI. */
+:root { --gold:#000 !important; --gold-soft:#000 !important; }
+.app-header { border-top-color:#000 !important; border-bottom-color:#000 !important; }
+.brand-mark,.mode-label,.panel-heading .step-number,.profile-manager,.backup-restore-panel,.save-inspector { border-color:#000 !important; }
+.profile-manager,.backup-restore-panel,.save-inspector { border-top-color:#000 !important; }
+button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible { outline-color:#000 !important; }
+.field-group input:focus,.field-group select:focus,.field-group textarea:focus,input[type=number]:focus,input[type=search]:focus,input[type=text]:focus,select:focus,textarea:focus { border-color:#000 !important; outline-color:#000 !important; }
+.preset-row{display:flex;flex-wrap:wrap;gap:8px;align-items:center}.preset-row button{font-weight:400;border-width:1px;padding:7px 10px}
+
+.plant-editor-panel .panel-heading p{margin:4px 0 0;line-height:1.4}
+.plant-row-heading{display:flex;align-items:center;justify-content:space-between;gap:10px;flex:1 1 100%;flex-wrap:wrap}
+.plant-rtid-line{flex:1 1 100%;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:11px;overflow-wrap:anywhere;padding:6px 8px;border:1px dashed #000;border-radius:8px;background:#f7f7f7}
+.plant-seed-rule{flex:1 1 100%;line-height:1.4}
+.plant-numeric-id-field input[readonly]{background:#eee!important;color:#000!important}
+.plant-editor-panel .simple-resource-row{margin-bottom:8px}
+html,body{background:#fff!important;color:#000!important}
+body{font-family: 'Trebuchet MS', 'Segoe UI', sans-serif;letter-spacing:.01em}
+body::before{content:"";display:block;position:fixed;inset:0;pointer-events:none;z-index:-1;background:#fff}
+button,input,select,textarea,a{color:#000!important}
+button,input,select,textarea{border:1px solid #000!important;background:#fff!important;box-shadow:none!important}
+button:not(:disabled):hover,a:hover{background:#000!important;color:#fff!important;filter:none!important}
+button:disabled{opacity:.42}
+
+.app-header{
+  position:relative;display:flex;align-items:center;gap:18px;flex-wrap:wrap;
+  margin:0;border:1px solid #000;border-left:0;border-right:0;
+  padding:14px clamp(16px,4vw,42px);background:#fff!important;
+}
+.app-header::after,.app-header::before,.editor-panel::after,.game-card::after,.daily-challenge::after{
+  content:"";display:block;position:absolute;height:5px;left:0;right:0;pointer-events:none;
+  background:linear-gradient(135deg,transparent 0 7px,#000 7px 8px,transparent 8px 15px);
+  background-size:15px 5px;background-repeat:repeat-x;
+}
+.app-header::after{bottom:-6px}
+.app-header::before{top:-6px}
+.brand-mark{border:1px solid #000!important;background:#000!important;color:#fff!important;animation:none!important;padding:10px 12px}
+.brand-copy h1,.brand-kicker,.mode-label,.intro-block,.intro-block h2,.intro-block p{color:#000!important}
+.brand-kicker,.eyebrow,.mode-label{letter-spacing:.14em;font-weight:800}
+.header-actions{margin-left:auto}
+.mini-games-link{border:1px solid #000!important;background:#fff!important;color:#000!important;padding:9px 14px}
+
+.app-shell{max-width:1180px;margin:0 auto;padding:30px clamp(14px,3vw,34px) 42px}
+.intro-block{position:relative;border:1px solid #000;padding:24px;margin-bottom:18px;background:#fff!important}
+.intro-block::after{content:"";position:absolute;bottom:-6px;left:0;right:0;height:5px;background:linear-gradient(135deg,transparent 0 7px,#000 7px 8px,transparent 8px 15px);background-size:15px 5px}
+.intro-block h2{font-size:clamp(28px,5vw,54px);line-height:1.02;margin:8px 0 12px}
+.intro-block h2 span{color:#000!important;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:5px}
+
+.editor-panel,.save-inspector,.backup-restore-panel,.profile-manager,.file-info,.validation-message{
+  position:relative;background:#fff!important;color:#000!important;border:1px solid #000!important;box-shadow:none!important;
+}
+.editor-panel{padding:20px;margin:18px 0}
+.editor-panel::after{bottom:-6px}
+.panel-heading{display:flex;align-items:flex-start;gap:12px;border-bottom:1px solid #000;padding-bottom:13px;margin-bottom:16px}
+.step-number{display:grid;place-items:center;min-width:34px;height:34px;border:1px solid #000;background:#000!important;color:#fff!important;font-weight:900}
+.panel-heading h2,.panel-heading p,.field-group label,.muted-note,.editor-status,.inspector-heading h3,.inspector-facts dt,.inspector-facts dd,.plant-id,.plant-seed-rule{color:#000!important}
+.panel-heading h2{margin:0;text-transform:uppercase;letter-spacing:.08em}
+.panel-heading p{margin:3px 0 0}
+
+.simple-upload-button,.outline-button,.save-button,.disabled-button,.editor-actions button{
+  border:1px solid #000!important;border-radius:0!important;background:#fff!important;color:#000!important;box-shadow:none!important;
+}
+.simple-upload-button:hover,.outline-button:hover,.save-button:hover,.editor-actions button:hover{background:#000!important;color:#fff!important}
+
+.field-grid,.shared-grid,.simple-resource-row,.backup-restore-actions,.profile-manager-actions{gap:12px}
+.field-group input,.field-group select,.field-group textarea{width:100%;padding:10px 11px;border:1px solid #000!important;background:#fff!important}
+.field-group input:focus,.field-group select:focus,.field-group textarea:focus{outline:1px solid #000;outline-offset:2px}
+
+.save-inspector,.backup-restore-panel,.profile-manager{padding:15px;margin-top:15px}
+.inspector-heading{border-bottom:1px solid #000;padding-bottom:8px}
+.inspector-facts>div{border-bottom:1px solid #000!important;background:#fff!important}
+.inspector-profiles,.inspector-diagnostics{border:1px solid #000!important;background:#f4f4f4!important;padding:10px}
+
+.plant-row,.powerup-row,.data-row{border:1px solid #000!important;border-radius:0!important;background:#fff!important;box-shadow:none!important}
+.plant-row:hover,.data-row:hover{transform:none!important;border-color:#000!important;box-shadow:none!important}
+.plant-row{position:relative}
+.plant-row::after{content:"";position:absolute;bottom:-5px;left:0;right:0;height:4px;background:linear-gradient(135deg,transparent 0 6px,#000 6px 7px,transparent 7px 13px);background-size:13px 4px}
+.plant-row-heading{border-bottom:1px solid #000;padding-bottom:8px}
+.plant-rtid-line{display:none!important}
+.plant-numeric-id-field input[readonly]{background:#f4f4f4!important;color:#000!important}
+
+#validation-message,.validation-message{background:#fff!important;border:1px solid #000!important}
+.editor-actions{border-top:1px solid #000;padding-top:15px}
+.app-footer{border-top:1px solid #000!important;color:#000!important;background:#fff!important}
+.editor-panel + .editor-panel::before{content:"";display:block;position:absolute;top:-12px;left:0;right:0;height:5px;background:linear-gradient(135deg,transparent 0 7px,#000 7px 8px,transparent 8px 15px);background-size:15px 5px}
+
+@media(max-width:700px){
+  .app-header{padding:12px 14px}
+  .header-actions{margin-left:0;width:100%}
+  .mini-games-link{width:100%;text-align:center}
+  .app-shell{padding:22px 12px 34px}
+  .editor-panel{padding:14px}
+  .simple-resource-row{grid-template-columns:1fr}
+  .profile-manager-actions{grid-template-columns:1fr}
+}
+
+
+/* Final visual direction: sharp, square, monochrome PvZ2 database/editor layout. */
+:root{--radius:0px!important;--green:#000!important;--green2:#000!important;--text:#000!important;--muted:#333!important;--line:#000!important}
+html,body{background:#fff!important;color:#000!important}
+body{font-family:'Trebuchet MS','Segoe UI',sans-serif!important;line-height:1.45}
+button,input,select,textarea,.editor-panel,.file-info,.editor-status,.validation-message,.save-inspector,.backup-restore-panel,.profile-manager,.data-row,.file-row,.save-card,.editor-promo,.brand-mark,.mode-label,.step-number,.simple-upload-button,.disabled-button,.outline-button,.nav-cta,.game-card,.shared-stat,.shared-achievement,.daily-challenge,.customization-details,.customization-details>summary,.color-control input[type=color],.preset-colors button,.small-reset{border-radius:0!important;box-shadow:none!important}
+button:hover:not(:disabled),.outline-button:hover,.nav-cta:hover,.simple-upload-button:hover{background:#000!important;color:#fff!important;transform:none!important}
+button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid #000!important;outline-offset:2px}
+.app-header{border:1px solid #000!important;border-top:1px solid #000!important;background:#fff!important;padding:14px 16px!important}
+.brand-mark{border:1px solid #000!important;color:#000!important}
+.mode-label{border:1px solid #000!important;color:#000!important}
+.intro-block{padding:38px 0 24px!important}
+.intro-block h2{letter-spacing:-.035em!important}
+.editor-panel{border:1px solid #000!important;background:#fff!important;padding:20px!important}
+.step-number{border:1px solid #000!important;background:#fff!important;color:#000!important}
+.simple-upload-button{border:1px solid #000!important;background:#fff!important;color:#000!important}
+#save-file{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important}
+.file-info,.editor-status,.validation-message,.save-inspector,.backup-restore-panel,.profile-manager,.inspector-profiles,.inspector-diagnostics{border:1px solid #000!important;background:#fff!important;color:#000!important}
+.field-group input,.field-group select,select,input,textarea{border:1px solid #000!important;border-radius:0!important;background:#fff!important;color:#000!important}
+.field-group input:focus{border-color:#000!important;box-shadow:none!important}
+.data-row{border:1px solid #000!important;background:#fff!important}
+.data-row strong,.panel-heading h2,.panel-heading p,.muted-note,.field-group small{color:#000!important}
+.outline-button,.disabled-button{border:1px solid #000!important;background:#fff!important;color:#000!important}
+.disabled-button{opacity:.45}
+.editor-actions{border-top:1px solid #000;padding-top:16px}
+.app-footer{border-top:1px solid #000!important;color:#000!important}
+
+/* Database-style navigation inspired by PvZ2 community database layouts, retaining Anty's monochrome theme. */
+.app-shell{width:min(1180px,calc(100% - 28px))!important}
+.app-header{width:min(1180px,calc(100% - 28px))!important}
+.header-actions{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.mini-games-link{border:1px solid #000;padding:8px 11px;text-decoration:none;color:#000;font-size:11px;font-weight:800}
+.mini-games-link:hover{background:#000;color:#fff}
+.editor-panel{margin-bottom:12px!important}
+.panel-heading{padding-bottom:12px;border-bottom:1px solid #000}
+.panel-heading p{font-size:12px!important}
+.profile-manager-actions{border-top:1px solid #000;margin-top:14px;padding-top:14px}
+.plant-row{border:1px solid #000!important;border-radius:0!important;background:#fff!important;padding:14px!important}
+.plant-rtid-line{display:none!important}
+.plant-row .field-grid{gap:10px!important}
+
+/* Final UI geometry: strictly square, sharp, no diagonal/zigzag decoration. */
+*, *::before, *::after {
+  border-radius: 0 !important;
+}
+button, input, select, textarea, .panel, .card, .section, .editor-panel,
+.plant-row, .game-card, .modal, .tab, .step-number {
+  border-radius: 0 !important;
+}
+.zigzag, .zig-zag, .zigzag-accent, .diagonal-accent, .chevron-accent,
+[data-accent="zigzag"], [data-accent="diagonal"] {
+  display: none !important;
+}
+
+/* === FINAL: NO ZIGZAGS / NO DIAGONAL ACCENTS === */
+.app-header::before,
+.app-header::after,
+.site-header::before,
+.site-header::after,
+.editor-panel::before,
+.editor-panel::after,
+.editor-panel + .editor-panel::before,
+.game-card::before,
+.game-card::after,
+.daily-challenge::before,
+.daily-challenge::after,
+.plant-row::before,
+.plant-row::after,
+.intro-block::before,
+.intro-block::after,
+.panel-card::before,
+.panel-card::after {
+  content: none !important;
+  display: none !important;
+  background: none !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  clip-path: none !important;
+  transform: none !important;
+}
+
+/* Absolutely square UI geometry. */
+*, *::before, *::after {
+  border-radius: 0 !important;
+}
+
+/* Compact editor layout: file picker first, four scrollable quick-control columns, detailed tools below. */
+.app-shell { max-width: 1500px; }
+.intro-block { margin-bottom: 14px; }
+.app-shell > .editor-panel[aria-labelledby="file-title"] {
+  margin-bottom: 12px;
+  padding: 14px;
+}
+.app-shell > .editor-panel[aria-labelledby="file-title"] > .panel-heading {
+  margin-bottom: 8px;
+}
+.app-shell > .editor-panel[aria-labelledby="file-title"] #save-file {
+  display: none !important;
+}
+.app-shell > .editor-panel[aria-labelledby="file-title"] .simple-upload-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 42px;
+  padding: 8px 14px;
+  border: 1px solid #000;
+  border-radius: 0 !important;
+  color: #000;
+  background: #fff;
+  cursor: pointer;
+}
+.app-shell > .editor-panel[aria-labelledby="file-title"] #file-info {
+  display: inline-block;
+  margin-left: 12px;
+  font-size: 12px;
+}
+.quick-controls-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+  max-height: 340px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  align-items: stretch;
+  margin: 0 0 16px;
+  padding: 0 8px 8px 0;
+  border: 1px solid #000;
+  border-radius: 0 !important;
+  background: #f7f7f7;
+}
+.quick-control-card {
+  min-width: 0;
+  margin: 0 !important;
+  padding: 12px !important;
+  border: 1px solid #000 !important;
+  border-radius: 0 !important;
+  background: #fff;
+}
+.quick-control-card .panel-heading {
+  margin-bottom: 10px;
+}
+.quick-control-card .panel-heading h2 {
+  font-size: 15px;
+  line-height: 1.2;
+}
+.quick-control-card .field-grid,
+.quick-control-card .simple-resource-row,
+.quick-control-card .profile-manager-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 8px;
+}
+.quick-control-card input,
+.quick-control-card select,
+.quick-control-card button,
+.quick-control-card a {
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+}
+.quick-control-card .field-group label {
+  font-size: 11px;
+}
+.quick-control-card .muted-note {
+  font-size: 11px;
+  line-height: 1.4;
+}
+.profile-manager-card .profile-manager {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.profile-manager-card .profile-manager > .field-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.quick-games-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  border: 1px solid #000;
+  text-decoration: none;
+  color: #000;
+  background: #fff;
+}
+.below-fold-section {
+  margin-top: 14px;
+}
+.plant-editor-panel,
+#validation-message,
+.editor-actions,
+.app-footer {
+  margin-top: 14px;
+}
+@media (max-width: 1050px) {
+  .quick-controls-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); max-height: 420px; }
+}
+@media (max-width: 560px) {
+  .quick-controls-grid { grid-template-columns: 1fr; max-height: 460px; padding: 0 6px 6px 0; }
+  .app-shell > .editor-panel[aria-labelledby="file-title"] { padding: 10px; }
+  .app-shell > .editor-panel[aria-labelledby="file-title"] #file-info { display: block; margin: 8px 0 0; }
+}
+
+
+/* Final compact monochrome layout overrides */
+html, body, button, input, select, textarea {
+  font-family: "Trebuchet MS", Trebuchet, sans-serif !important;
+}
+html, body, main, section, article, header, footer, div {
+  box-sizing: border-box;
+}
+body, .app-shell, .editor-panel, .quick-control-card, .save-inspector,
+.backup-restore-panel, .plant-editor-panel, .intro-block {
+  background: #fff !important;
+  color: #000 !important;
+  border-radius: 0 !important;
+}
+.app-header, .editor-panel, .quick-controls-grid, .quick-control-card,
+.save-inspector, .backup-restore-panel, .plant-editor-panel,
+.outline-button, button, input, select, textarea, .simple-upload-button,
+.mini-games-link, .quick-games-link {
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+.quick-controls-grid {
+  display: grid !important;
+  grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+  max-height: min(52vh, 520px) !important;
+  min-height: 180px;
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+  overscroll-behavior: contain;
+  border: 1px solid #000 !important;
+  background: #fff !important;
+  padding: 8px !important;
+}
+.quick-control-card {
+  min-width: 0 !important;
+  overflow-wrap: anywhere;
+}
+.app-shell > .editor-panel[aria-labelledby="file-title"] {
+  margin-bottom: 10px !important;
+}
+.app-shell > .editor-panel[aria-labelledby="file-title"] #save-file {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  clip-path: inset(50%) !important;
+  white-space: nowrap !important;
+}
+.simple-upload-button {
+  min-height: 44px;
+  border: 1px solid #000 !important;
+  padding: 10px 14px !important;
+  background: #fff !important;
+  color: #000 !important;
+  cursor: pointer;
+}
+.quick-control-card .field-grid,
+.quick-control-card .simple-resource-row,
+.quick-control-card .profile-manager-actions {
+  min-width: 0;
+}
+.quick-control-card input, .quick-control-card select,
+.quick-control-card button, .quick-control-card a {
+  max-width: 100%;
+}
+.app-shell { min-width: 0; overflow-x: clip; }
+.app-shell > * { min-width: 0; }
+.plant-row, .inspector-facts > div { border-radius: 0 !important; }
+@media (max-width: 1050px) {
+  .quick-controls-grid { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; max-height: 440px !important; }
+}
+@media (max-width: 560px) {
+  .quick-controls-grid { grid-template-columns: minmax(0, 1fr) !important; max-height: 480px !important; }
+  .app-shell > .editor-panel[aria-labelledby="file-title"] #file-info {
+    display: block; margin: 8px 0 0; overflow-wrap: anywhere;
+  }
+}
+
+/* Keep export immediately beneath the save-file import control. */
+.upload-export-actions{margin:0 0 18px;padding:0;border-top:0;grid-column:1/-1}
+.upload-export-actions #export-button{width:100%;min-height:44px}
+
+/* Minimal title-first layout and compact scrolling controls. */
+.app-header { justify-content: space-between; }
+.brand-copy { display: flex; align-items: center; }
+.brand-copy h1 { margin: 0; font-size: clamp(22px, 3vw, 32px); line-height: 1.15; }
+.quick-controls-grid { grid-template-columns: repeat(4, minmax(0, 1fr)) !important; max-height: min(52vh, 520px) !important; overflow-y: auto !important; overflow-x: hidden !important; }
+@media (max-width: 1050px) { .quick-controls-grid { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; } }
+@media (max-width: 560px) { .quick-controls-grid { grid-template-columns: minmax(0, 1fr) !important; } }
+
+/* Visual polish: monochrome editor dashboard with scrollable editing workspaces. */
+:root {
+  --panel-border: 1px solid #000;
+  --panel-muted: #f2f2f2;
+}
+.app-header {
+  margin-top: 16px !important;
+  margin-bottom: 16px !important;
+  padding: 18px 20px !important;
+  border: 1px solid #000 !important;
+  border-left: 6px solid #000 !important;
+  align-items: center;
+  gap: 16px;
+}
+.brand-mark {
+  width: 58px !important;
+  height: 58px !important;
+  flex: 0 0 58px;
+  font-size: 14px !important;
+  letter-spacing: .04em !important;
+  font-weight: 900;
+  background: #000 !important;
+  color: #fff !important;
+}
+.brand-copy h1 {
+  font-size: clamp(24px, 3.4vw, 36px) !important;
+  letter-spacing: -.035em !important;
+  text-transform: none !important;
+}
+.header-actions .mini-games-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 42px;
+  font-size: 12px;
+  font-weight: 800;
+  padding: 10px 14px;
+  border: 1px solid #000 !important;
+  background: #fff;
+}
+.app-shell { padding-top: 6px !important; }
+.editor-panel, .save-inspector, .backup-restore-panel {
+  border: 1px solid #000 !important;
+  box-shadow: 3px 3px 0 #000 !important;
+}
+.editor-panel { padding: clamp(14px, 2vw, 22px) !important; }
+.panel-heading {
+  align-items: center !important;
+  padding-bottom: 12px !important;
+  border-bottom: 2px solid #000 !important;
+  gap: 12px !important;
+}
+.panel-heading h2, .save-inspector h3, .backup-restore-panel h3 {
+  text-transform: uppercase;
+  letter-spacing: .045em;
+  font-weight: 900;
+}
+.step-number {
+  min-width: 36px !important;
+  width: 36px;
+  height: 36px !important;
+  display: grid;
+  place-items: center;
+  background: #000 !important;
+  color: #fff !important;
+  font-size: 12px;
+  font-weight: 900;
+}
+button, .simple-upload-button, .mini-games-link {
+  transition: background-color .12s ease, color .12s ease, outline-color .12s ease;
+}
+button:not(:disabled), .simple-upload-button, .mini-games-link { font-weight: 800; }
+button:active:not(:disabled), .simple-upload-button:active { transform: translateY(1px); }
+button:disabled { background: #eee !important; color: #555 !important; }
+.field-group input, .field-group select, .field-group textarea, input[type=number], input[type=search], input[type=text], select, textarea {
+  min-height: 44px;
+  border: 1px solid #000 !important;
+  background: #fff !important;
+}
+.field-group label { line-height: 1.35; }
+.file-info { border-left: 4px solid #000 !important; background: #f7f7f7 !important; }
+.upload-export-actions #export-button {
+  border: 2px solid #000 !important;
+  box-shadow: 3px 3px 0 #000 !important;
+  letter-spacing: .02em;
+}
+.quick-controls-grid {
+  gap: 12px !important;
+  max-height: min(56vh, 560px) !important;
+  min-height: 230px !important;
+  padding: 12px !important;
+  border: 2px solid #000 !important;
+  background: #f1f1f1 !important;
+  scrollbar-width: thin;
+  scrollbar-color: #000 #e5e5e5;
+}
+.quick-control-card {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 14px !important;
+  border: 1px solid #000 !important;
+  box-shadow: 2px 2px 0 #000 !important;
+  background: #fff !important;
+}
+.quick-control-card .panel-heading { min-height: 48px; }
+.quick-control-card .panel-heading h2 { font-size: 14px !important; }
+.quick-control-card .step-number { width: 30px; min-width: 30px !important; height: 30px !important; }
+.quick-control-card .profile-manager { margin-top: 0 !important; padding: 0 !important; border: 0 !important; }
+.preset-row { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; }
+.preset-row button { padding: 8px 5px; min-height: 38px; font-size: 12px; }
+#plant-levels-list {
+  max-height: min(68vh, 760px) !important;
+  min-height: 220px;
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+  scrollbar-color: #000 #e5e5e5;
+  border: 2px solid #000 !important;
+  padding: 10px !important;
+  background: #f2f2f2 !important;
+}
+#plant-levels-list .plant-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 0 0 8px !important;
+  padding: 12px !important;
+  border: 1px solid #000 !important;
+  background: #fff !important;
+  box-shadow: 1px 1px 0 #000 !important;
+}
+#plant-levels-list .plant-row:last-child { margin-bottom: 0 !important; }
+#plant-levels-list .plant-row img { flex: 0 0 auto; }
+.plant-editor-panel > .simple-resource-row { padding: 12px; margin-bottom: 16px; border: 1px solid #000; background: #f7f7f7; }
+.plant-filters { padding: 12px; margin-bottom: 12px; border: 1px solid #000; background: #f7f7f7; }
+.inspector-facts { border-top: 2px solid #000 !important; border-left: 2px solid #000 !important; }
+.inspector-facts > div { border-right: 1px solid #000 !important; border-bottom: 1px solid #000 !important; }
+.inspector-facts dt { letter-spacing: .06em; }
+.inspector-profiles, .inspector-diagnostics { max-height: 300px; overflow: auto; overscroll-behavior: contain; scrollbar-width: thin; scrollbar-color: #000 #e5e5e5; }
+.backup-restore-panel { padding: 18px !important; }
+.editor-status, .validation-message { border-left: 4px solid #000 !important; background: #f7f7f7 !important; }
+/* Make browser scrollbars visible and restrained in Chromium/WebKit. */
+.quick-controls-grid::-webkit-scrollbar, #plant-levels-list::-webkit-scrollbar,
+.inspector-profiles::-webkit-scrollbar, .inspector-diagnostics::-webkit-scrollbar { width: 10px; }
+.quick-controls-grid::-webkit-scrollbar-track, #plant-levels-list::-webkit-scrollbar-track,
+.inspector-profiles::-webkit-scrollbar-track, .inspector-diagnostics::-webkit-scrollbar-track { background: #e5e5e5; }
+.quick-controls-grid::-webkit-scrollbar-thumb, #plant-levels-list::-webkit-scrollbar-thumb,
+.inspector-profiles::-webkit-scrollbar-thumb, .inspector-diagnostics::-webkit-scrollbar-thumb { background: #000; border: 2px solid #e5e5e5; }
+@media (max-width: 1050px) {
+  .quick-controls-grid { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; max-height: min(58vh, 520px) !important; }
+}
+@media (max-width: 560px) {
+  .app-header { margin-top: 10px !important; padding: 12px !important; gap: 10px; }
+  .brand-mark { width: 44px !important; height: 44px !important; flex-basis: 44px; }
+  .brand-copy h1 { font-size: 23px !important; }
+  .header-actions { width: auto !important; margin-left: auto !important; }
+  .header-actions .mini-games-link { width: auto; padding: 8px; font-size: 11px; }
+  .quick-controls-grid { grid-template-columns: minmax(0, 1fr) !important; max-height: 54vh !important; min-height: 180px !important; }
+  #plant-levels-list { max-height: 58vh !important; min-height: 180px; padding: 7px !important; }
+  #plant-levels-list .plant-row { align-items: flex-start; }
+  .preset-row { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { scroll-behavior: auto !important; transition: none !important; }
+}
+
+
+/* Single continuous page column: the document scrolls, not nested panels. */
+html, body {
+  min-height: 100%;
+  height: auto !important;
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+  scroll-behavior: smooth;
+}
+body { display: block !important; }
+.app-shell {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: stretch !important;
+  gap: 16px !important;
+  width: min(100% - 24px, 1180px) !important;
+  max-width: 1180px !important;
+  height: auto !important;
+  max-height: none !important;
+  min-height: 0 !important;
+  overflow: visible !important;
+  margin: 0 auto 28px !important;
+}
+.app-shell > *, .app-shell section { min-width: 0; max-width: 100%; }
+.quick-controls-grid {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: stretch !important;
+  gap: 14px !important;
+  width: 100% !important;
+  height: auto !important;
+  min-height: 0 !important;
+  max-height: none !important;
+  overflow: visible !important;
+  padding: 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+}
+.quick-control-card {
+  width: 100% !important;
+  min-width: 0 !important;
+  max-height: none !important;
+  overflow: visible !important;
+}
+#plant-levels-list {
+  height: auto !important;
+  max-height: none !important;
+  min-height: 0 !important;
+  overflow: visible !important;
+}
+.inspector-profiles, .inspector-diagnostics {
+  height: auto !important;
+  max-height: none !important;
+  overflow: visible !important;
+}
+.save-inspector, .backup-restore-panel, .plant-editor-panel,
+.editor-panel, .below-fold-section {
+  height: auto !important;
+  max-height: none !important;
+  overflow: visible !important;
+}
+.upload-export-actions { width: 100%; }
+@media (max-width: 560px) {
+  .app-shell { width: calc(100% - 16px) !important; gap: 12px !important; }
+  .quick-control-card { padding: 12px !important; }
+  #plant-levels-list .plant-row { flex-wrap: wrap; }
+}
+
+/* Preset controls added for resource, power-up, and plant bulk edits. */
+.powerup-presets { width:100%; margin-top:8px; }
+.plant-preset-row { margin:0 0 14px; }
+.plant-preset-row button { min-height:38px; }
+@media(max-width:600px) {
+  .plant-preset-row { grid-template-columns:repeat(2,minmax(0,1fr)); }
+  .powerup-presets { grid-template-columns:repeat(3,minmax(0,1fr)); }
+}
+.powerup-presets { flex:1 1 100%; min-width:0; }
+
+/* Save Lab: a safe, preview-first experiment workspace. */
+.save-lab-panel { border:1px solid #d9d9d9; background:#fff; padding:clamp(16px,3vw,28px); margin:18px 0; color:#111; }
+.save-lab-header { display:flex; justify-content:space-between; align-items:flex-start; gap:18px; flex-wrap:wrap; }
+.save-lab-kicker { margin:0 0 5px; font-size:11px; letter-spacing:.15em; font-weight:800; }
+.save-lab-header h2 { margin:0; font-size:clamp(24px,4vw,34px); letter-spacing:-.04em; }
+.save-lab-intro { max-width:660px; margin:8px 0 0; color:#555; line-height:1.55; }
+.save-lab-status { max-width:300px; border:1px solid #ddd; padding:10px 12px; font-size:12px; line-height:1.4; }
+.save-lab-mode-row { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:8px; margin:20px 0 16px; }
+.save-lab-mode { border:1px solid #bbb; background:#fff; color:#111; min-height:42px; font:inherit; font-weight:700; cursor:pointer; }
+.save-lab-mode.is-active { background:#111; color:#fff; border-color:#111; }
+.save-lab-workspace { display:grid; grid-template-columns:minmax(240px,.82fr) minmax(0,1.18fr); gap:16px; align-items:start; }
+.save-lab-controls,.save-lab-preview-panel { min-width:0; border:1px solid #e1e1e1; padding:16px; }
+.save-lab-controls { display:flex; flex-direction:column; gap:14px; }
+.save-lab-controls .field-group { display:flex; flex-direction:column; gap:6px; }
+.save-lab-controls input[type=number],.save-lab-controls select { width:100%; min-width:0; border:1px solid #c9c9c9; border-radius:0; padding:10px; background:#fff; color:#111; font:inherit; }
+.save-lab-advanced-options { display:grid; gap:10px; padding:12px; border:1px dashed #bbb; }
+.save-lab-advanced-options[hidden] { display:none; }
+.save-lab-check { display:flex; gap:9px; align-items:center; font-size:13px; }
+.save-lab-check input { accent-color:#111; width:16px; height:16px; }
+.save-lab-actions { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:8px; }
+.save-lab-actions button { min-width:0; min-height:40px; font:inherit; font-size:13px; font-weight:700; cursor:pointer; }
+#save-lab-apply { background:#111; color:#fff; border:1px solid #111; padding:9px 12px; }
+.save-lab-actions button:disabled { opacity:.38; cursor:not-allowed; }
+.save-lab-preview-heading { display:flex; justify-content:space-between; align-items:center; gap:12px; margin-bottom:12px; }
+.save-lab-preview-heading h3,.save-lab-timeline h3 { font-size:16px; margin:0; }
+#save-lab-change-count { font-size:12px; color:#555; text-align:right; }
+.save-lab-preview-list { display:flex; flex-direction:column; gap:6px; }
+.save-lab-diff-row { display:flex; justify-content:space-between; align-items:center; gap:10px; border:1px solid #e6e6e6; padding:9px 10px; min-width:0; }
+.save-lab-diff-name { min-width:0; display:flex; flex-direction:column; gap:3px; }
+.save-lab-diff-name span { font-size:10px; text-transform:uppercase; letter-spacing:.08em; color:#777; }
+.save-lab-diff-name strong { font-size:12px; overflow-wrap:anywhere; }
+.save-lab-diff-values { display:flex; align-items:center; gap:7px; flex-shrink:0; font-size:12px; font-variant-numeric:tabular-nums; }
+.save-lab-diff-values span:first-child { color:#777; text-decoration:line-through; }
+.save-lab-arrow { color:#777; }
+.save-lab-diff-values strong { background:#f1f1f1; padding:4px 6px; }
+.save-lab-timeline { margin-top:22px; padding-top:16px; border-top:1px solid #ddd; }
+#save-lab-timeline { list-style:none; margin:10px 0 0; padding:0; display:grid; gap:7px; }
+#save-lab-timeline li { display:flex; justify-content:space-between; gap:12px; padding:8px 0; border-bottom:1px solid #eee; font-size:12px; }
+#save-lab-timeline li strong { font-weight:700; }
+#save-lab-timeline li span { color:#666; text-align:right; }
+@media(max-width:760px) { .save-lab-workspace { grid-template-columns:minmax(0,1fr); } .save-lab-status { max-width:none; width:100%; } }
+@media(max-width:420px) { .save-lab-actions { grid-template-columns:minmax(0,1fr); } .save-lab-diff-row { align-items:flex-start; flex-direction:column; } .save-lab-mode-row { gap:5px; } .save-lab-mode { font-size:12px; } }
+
+
+/* Save Workshop: checkpoints, plant overview, and change audit. */
+.surprise-toolbox { border:1px solid #d9d9d9; background:#fff; color:#111; padding:clamp(16px,3vw,28px); margin:18px 0; }
+.surprise-toolbox-heading { display:flex; align-items:flex-start; justify-content:space-between; gap:18px; flex-wrap:wrap; margin-bottom:18px; }
+.surprise-toolbox-heading h2 { margin:0; font-size:clamp(24px,4vw,34px); letter-spacing:-.04em; }
+.surprise-tool-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:12px; }
+.surprise-tool-card { border:1px solid #ddd; padding:16px; min-width:0; display:flex; flex-direction:column; align-items:stretch; gap:10px; }
+.surprise-tool-card h3 { margin:0; font-size:19px; }
+.surprise-tool-card p { margin:0; color:#555; font-size:13px; line-height:1.5; }
+.surprise-tool-number { font-size:10px; letter-spacing:.13em; font-weight:800; color:#666; }
+.surprise-tool-card .field-group { margin-top:2px; }
+.snapshot-list { list-style:none; padding:0; margin:0; display:grid; gap:8px; }
+.snapshot-list li { border-top:1px solid #e5e5e5; padding-top:8px; display:grid; grid-template-columns:minmax(0,1fr) auto auto; gap:6px; align-items:center; }
+.snapshot-list .snapshot-label { font-size:12px; font-weight:700; overflow-wrap:anywhere; }
+.snapshot-list button { min-height:32px; padding:5px 8px; font-size:11px; }
+.roster-stat-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:8px; }
+.roster-stat-grid > div { border:1px solid #e0e0e0; padding:10px; display:flex; flex-direction:column; gap:3px; }
+.roster-stat-grid strong, .change-report-count strong { font-size:24px; letter-spacing:-.04em; }
+.roster-stat-grid span, .change-report-count span { color:#666; font-size:11px; }
+.change-report-count { border:1px solid #e0e0e0; padding:14px; display:flex; flex-direction:column; gap:2px; }
+@media(max-width:900px) { .surprise-tool-grid { grid-template-columns:1fr; } .surprise-tool-card { padding:14px; } }
+
+/* World progression / trophy controls */
+.world-unlocks-list{display:grid;grid-template-columns:1fr;gap:7px;margin-top:10px}
+.world-unlock-row{display:flex;align-items:center;gap:9px;padding:9px 10px;border:1px solid #dedede;border-radius:8px;font-size:13px}
+.world-unlock-row input{width:18px;height:18px;flex:0 0 auto}
+@media(min-width:600px){.world-unlocks-list{grid-template-columns:1fr 1fr}}

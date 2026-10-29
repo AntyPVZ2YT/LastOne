@@ -1,0 +1,35 @@
+workflows:
+  ios-ipa-unsigned:
+    name: Anty's PvZ2 Save Editor - Unsigned iOS IPA
+    max_build_duration: 120
+    instance_type: mac_mini_m2
+    environment:
+      xcode: latest
+    scripts:
+      - name: Install Node dependencies
+        script: npm install
+      - name: Generate native iOS project
+        script: npx cap add ios
+      - name: Sync web assets to iOS project
+        script: npx cap sync ios
+      - name: Build unsigned iOS app
+        script: |
+          xcodebuild \
+            -workspace ios/App/App.xcworkspace \
+            -scheme App \
+            -configuration Release \
+            -sdk iphoneos \
+            -derivedDataPath build/ios \
+            CODE_SIGNING_ALLOWED=NO \
+            build
+      - name: Package unsigned IPA
+        script: |
+          APP_PATH="build/ios/Build/Products/Release-iphoneos/App.app"
+          test -d "$APP_PATH"
+          mkdir -p build/ipa/Payload
+          cp -R "$APP_PATH" build/ipa/Payload/App.app
+          cd build/ipa
+          /usr/bin/zip -r ../../Antys_Save_Editor_unsigned.ipa Payload
+    artifacts:
+      - Antys_Save_Editor_unsigned.ipa
+      - /tmp/xcodebuild_logs/*.log
